@@ -1,0 +1,22 @@
+version: '3.9'
+
+networks:
+  net:
+
+services:
+  altar:
+    build: .
+    restart: always
+    container_name: altar
+    networks:
+      - net
+    environment:
+      'MONGO_URI': 'mongodb://mongo:27017/admin'
+    ports:
+      - 8080:8080
+  mongo:
+    image: mongo:latest
+    restart: always
+    container_name: mongo
+    networks:
+      - net

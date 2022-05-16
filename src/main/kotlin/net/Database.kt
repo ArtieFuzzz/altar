@@ -9,11 +9,12 @@ import org.litote.kmongo.*
 data class Paste(val id: String, val content: String)
 
 class DataClient {
-     private var client: MongoClient? = null
+    private var client: MongoClient? = null
     private var db: MongoDatabase? = null
+    private var uri: String = System.getenv("MONGO_URI") ?: "mongodb://localhost:27017/admin"
 
     fun connect() {
-        this.client = KMongo.createClient()
+        this.client = KMongo.createClient(this.uri!!)
         this.db = this.client!!.getDatabase("altar")
     }
 
