@@ -11,7 +11,6 @@ val logger: KLogger = KotlinLogging.logger {}
 val database: DataClient = DataClient()
 
 fun main() {
-    System.setProperty(org.slf4j.impl.SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "INFO")
     val os = ManagementFactory.getOperatingSystemMXBean()
 
     println("Starting Altar")
