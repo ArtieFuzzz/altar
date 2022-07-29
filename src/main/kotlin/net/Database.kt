@@ -3,9 +3,13 @@ package net
 import com.mongodb.client.MongoClient
 import com.mongodb.client.MongoDatabase
 import com.mongodb.client.result.InsertOneResult
-import org.litote.kmongo.*
+import kotlinx.serialization.Serializable
+import org.litote.kmongo.KMongo
+import org.litote.kmongo.eq
+import org.litote.kmongo.findOne
+import org.litote.kmongo.getCollection
 
-@kotlinx.serialization.Serializable
+@Serializable
 data class Paste(val id: String, val content: String)
 
 class DataClient {
@@ -14,7 +18,7 @@ class DataClient {
     private var uri: String = System.getenv("MONGO_URI") ?: "mongodb://localhost:27017/admin"
 
     fun connect() {
-        this.client = KMongo.createClient(this.uri!!)
+        this.client = KMongo.createClient(this.uri)
         this.db = this.client!!.getDatabase("altar")
     }
 
